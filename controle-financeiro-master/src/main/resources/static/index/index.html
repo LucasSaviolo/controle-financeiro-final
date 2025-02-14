@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <link rel="stylesheet" href="./index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Controle Financeiro</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="user-info">
+      <img src="/src/main/resources/assets/img/avatar-profile.png" class="user-avatar">
+      <span id="user-name"></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/src/main/resources/static/index.html"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="/src/main/resources/static/transacoes.html"><i class="fas fa-list"></i> Transações</a></li>
+        <li><a href="/src/main/resources/static/metas.html"><i class="fas fa-bullseye"></i> Metas Financeiras</a></li>
+        <li><a href="/src/main/resources/static/orcamento.html"><i class="fas fa-wallet"></i> Orçamento</a></li>
+        <li><a href="/src/main/resources/static/categorias.html"><i class="fas fa-tags"></i> Categorias</a></li>
+        <li><a href="/src/main/resources/static/relatorios.html"><i class="fas fa-file-alt"></i> Relatórios</a></li>
+        <li><a href="/src/main/resources/static/configuracoes.html"><i class="fas fa-cog"></i> Configurações</a></li>
+        <li><a href="/src/main/resources/static/login/login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+      </ul>
+    </nav>
+  </div>
+  
+  <div class="content">
+    <h4>Bem-vindo a tela inicial!</h4>
+   <div>
+
+   </div>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem('user')); 
+    if (user) {
+      document.getElementById('user-name').textContent = user.nome;
+    }
+  </script>
+</body>
+
+</html>
