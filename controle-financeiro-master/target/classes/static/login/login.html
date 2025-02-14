@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./login.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <img src="/src/main/resources/assets/img/logo.png">
+        <form id="login-form">
+            <input placeholder="Email" type="email" id="email" name="email" required>
+        
+            <input placeholder="Senha" type="password" id="senha" name="senha" required>
+            
+            <button type="submit">Entrar</button>
+            
+            <div class="forgot-password">
+                <a href="/esqueci-senha">Esqueceu a senha?</a>
+            </div>
+            <div class="criar-usuario">
+                <a>Não tem uma conta?</a>
+                <a href="/src/main/resources/static/cadastrar-usuario/cadastrar-usuario.html" class="registro"> Registre-se</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async function(event) {
+            event.preventDefault(); 
+
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+
+            const response = await fetch('http://127.0.0.1:8080/usuarios/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, senha })
+            });
+
+            if (response.ok) {
+                data = await response.json();
+            localStorage.setItem('user', JSON.stringify(data));
+                window.location.href = '/src/main/resources/static/index/index.html';
+            } else {
+                alert('Credenciais inválidas');
+            }
+        });
+    </script>
+</body>
+</html>
