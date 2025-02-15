@@ -20,7 +20,7 @@ public class ControleFinanceiroApplication {
             public void addCorsMappings(CorsRegistry registry) {
                 // Configurar CORS para permitir acesso da origem do front-end
                 registry.addMapping("/**")
-                        .allowedOrigins("http://127.0.0.1:5500") // URL do seu front-end
+                        .allowedOrigins("http://127.0.0.1:4200", "http://localhost:4200") // URL do seu front-end
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
                         .allowCredentials(true); // Permitir cookies, se necessário
