@@ -10,7 +10,13 @@ import java.util.List;
 
 @Service
 public class TransacaoService {
-    private TransacaoRepository transacaoRepository;
+
+    private final TransacaoRepository transacaoRepository;
+
+    @Autowired
+    public TransacaoService(TransacaoRepository transacaoRepository) {
+        this.transacaoRepository = transacaoRepository;
+    }
 
     public Transacao salvarTransacao(Transacao transacao) {
         return transacaoRepository.save(transacao);
@@ -20,4 +26,3 @@ public class TransacaoService {
         return transacaoRepository.findByUsuario(usuario);
     }
 }
-
