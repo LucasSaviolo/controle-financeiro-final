@@ -10,8 +10,12 @@ import java.util.List;
 
 @Service
 public class MetaFinanceiraService {
-    private MetaFinanceiraRepository metaFinanceiraRepository;
+    private final MetaFinanceiraRepository metaFinanceiraRepository;
 
+    @Autowired
+    public MetaFinanceiraService(MetaFinanceiraRepository metaFinanceiraRepository) {
+        this.metaFinanceiraRepository = metaFinanceiraRepository;
+    }
     public MetaFinanceira salvarMeta(MetaFinanceira meta) {
         return metaFinanceiraRepository.save(meta);
     }
