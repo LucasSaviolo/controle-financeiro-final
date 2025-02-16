@@ -36,4 +36,10 @@ public class MetaFinanceiraController {
     public MetaFinanceira atualizarMeta(@PathVariable Long id, @RequestBody MetaFinanceira meta) {
         return metaFinanceiraService.atualizarMeta(id, meta);
     }
+
+    @GetMapping("{id}")
+    public MetaFinanceira buscarMetaPorId(@PathVariable Long id) {
+        return metaFinanceiraService.buscarPorId(id)
+                .orElseThrow(() -> new RuntimeException("Transação não encontrada com ID: " + id));
+    }
 }
