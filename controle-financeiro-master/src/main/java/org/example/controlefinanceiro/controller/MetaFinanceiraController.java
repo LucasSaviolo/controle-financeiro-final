@@ -20,7 +20,7 @@ public class MetaFinanceiraController {
         return metaFinanceiraService.salvarMeta(meta);
     }
 
-    @GetMapping("/{usuarioId}")
+    @GetMapping("listar/{usuarioId}")
     public List<MetaFinanceira> listarMetas(@PathVariable Long usuarioId) {
         Usuario usuario = new Usuario();
         usuario.setId(usuarioId);
