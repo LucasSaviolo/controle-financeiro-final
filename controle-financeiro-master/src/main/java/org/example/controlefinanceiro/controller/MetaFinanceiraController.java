@@ -14,7 +14,7 @@ public class MetaFinanceiraController {
     @Autowired
     private MetaFinanceiraService metaFinanceiraService;
 
-    @PostMapping
+    @PostMapping("/cadastrar")
     public MetaFinanceira criarMeta(@RequestBody MetaFinanceira meta) {
         return metaFinanceiraService.salvarMeta(meta);
     }

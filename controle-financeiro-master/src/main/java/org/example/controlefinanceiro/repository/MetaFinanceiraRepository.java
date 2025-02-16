@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface MetaFinanceiraRepository extends JpaRepository<MetaFinanceira, Long> {
+
     List<MetaFinanceira> findByUsuario(Usuario usuario);
 }
