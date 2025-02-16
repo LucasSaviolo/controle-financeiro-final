@@ -16,16 +16,34 @@ public class TransacaoController {
     @Autowired
     private TransacaoService transacaoService;
 
-    @PostMapping
+    @PostMapping("cadastro")
     public Transacao registrarTransacao(@RequestBody Transacao transacao) {
         return transacaoService.salvarTransacao(transacao);
     }
 
-    @GetMapping("/{usuarioId}")
+    @GetMapping("listar/{usuarioId}")
     public List<Transacao> listarTransacoes(@PathVariable Long usuarioId) {
         Usuario usuario = new Usuario();
         usuario.setId(usuarioId);
         return transacaoService.listarTransacoes(usuario);
     }
+
+    @DeleteMapping("excluir/{id}")
+    public void excluirTransacao(@PathVariable Long id) {
+        transacaoService.excluirTransacao(id);
+    }
+
+    @PutMapping("atualizar/{id}")
+    public Transacao atualizarTransacao(@PathVariable Long id, @RequestBody Transacao transacao) {
+        return transacaoService.atualizarTransacao(id, transacao);
+    }
+
+    @GetMapping("{id}")
+    public Transacao buscarTransacaoPorId(@PathVariable Long id) {
+        return transacaoService.buscarPorId(id)
+                .orElseThrow(() -> new RuntimeException("Transação não encontrada com ID: " + id));
+    }
+
+
 }
 

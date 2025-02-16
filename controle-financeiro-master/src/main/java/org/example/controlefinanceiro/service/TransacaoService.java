@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransacaoService {
@@ -25,4 +26,25 @@ public class TransacaoService {
     public List<Transacao> listarTransacoes(Usuario usuario) {
         return transacaoRepository.findByUsuario(usuario);
     }
+
+    public void excluirTransacao(Long id) {transacaoRepository.deleteById(id);}
+
+    public Optional<Transacao> buscarPorId(Long id) {
+        return transacaoRepository.findById(id);
+    }
+
+    public Transacao atualizarTransacao(Long id, Transacao transacaoAtualizada) {
+        return transacaoRepository.findById(id).map(transacao -> {
+            transacao.setValor(transacaoAtualizada.getValor());
+            transacao.setDescricao(transacaoAtualizada.getDescricao());
+            transacao.setTipo(transacaoAtualizada.getTipo());
+            transacao.setMetaFinanceira(transacaoAtualizada.getMetaFinanceira());
+            return transacaoRepository.save(transacao);
+        }).orElseThrow(() -> new RuntimeException("Transação não encontrada com ID: " + id));
+    }
+
+
+
+
+
 }
