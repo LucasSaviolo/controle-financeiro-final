@@ -11,6 +11,9 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public Usuario salvarUsuario(Usuario usuario) {
+        if (usuarioRepository.findByEmail(usuario.getEmail()) != null) {
+            throw new IllegalArgumentException("E-mail já cadastrado!");
+        }
         return usuarioRepository.save(usuario);
     }
 
@@ -20,5 +23,9 @@ public class UsuarioService {
             return usuario;
         }
         return null;
+    }
+
+    public boolean emailJaCadastrado(String email) {
+        return usuarioRepository.findByEmail(email) != null;
     }
 }
