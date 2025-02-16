@@ -1,6 +1,8 @@
 package org.example.controlefinanceiro.service;
 
 import org.example.controlefinanceiro.model.Categoria;
+import org.example.controlefinanceiro.model.MetaFinanceira;
+import org.example.controlefinanceiro.model.Usuario;
 import org.example.controlefinanceiro.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +28,8 @@ public class CategoriaService {
         categoriaRepository.deleteById(id);
     }
 
-    public List<Categoria> listar() {
-        return categoriaRepository.findAll();
+    public List<Categoria> listarCategorias(Usuario usuario) {
+        return categoriaRepository.findByUsuario(usuario);
     }
 
     public Optional<Categoria> buscarPorId(Long id) {
