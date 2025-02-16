@@ -1,6 +1,7 @@
 package org.example.controlefinanceiro.controller;
 
 import org.example.controlefinanceiro.model.MetaFinanceira;
+import org.example.controlefinanceiro.model.Transacao;
 import org.example.controlefinanceiro.model.Usuario;
 import org.example.controlefinanceiro.service.MetaFinanceiraService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,15 @@ public class MetaFinanceiraController {
         Usuario usuario = new Usuario();
         usuario.setId(usuarioId);
         return metaFinanceiraService.listarMetas(usuario);
+    }
+
+    @DeleteMapping("excluir/{id}")
+    public void excluirMeta(@PathVariable Long id) {
+        metaFinanceiraService.excluirMeta(id);
+    }
+
+    @PutMapping("atualizar/{id}")
+    public MetaFinanceira atualizarMeta(@PathVariable Long id, @RequestBody MetaFinanceira meta) {
+        return metaFinanceiraService.atualizarMeta(id, meta);
     }
 }
